@@ -35,8 +35,10 @@ import {
 
 import { Button } from "@/components/ui/button"
 import { DialogDemo } from "@/components/custom/add-dialog"
+import { createClient } from "@/lib/supabase/server"
+import { log } from "console"
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
     children,
 }: {
     children: React.ReactNode
@@ -68,8 +70,8 @@ export default function DashboardLayout({
                             </Breadcrumb>
 
                             <div className="ml-auto">
-                                
-                                <DialogDemo/>
+
+                                <DialogDemo />
                             </div>
 
                         </div>

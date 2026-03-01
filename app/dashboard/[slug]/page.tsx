@@ -3,9 +3,29 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Copy, Pencil } from 'lucide-react';
 import SlugCard from '@/components/custom/slug-card';
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
+import { createClient } from '@supabase/supabase-js';
+import { error } from 'console';
 
-const page = () => {
+const supabase = createClient(
+    'https://yvctddhttqofusinjscs.supabase.co',
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2Y3RkZGh0dHFvZnVzaW5qc2NzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MjMxMTg0MSwiZXhwIjoyMDg3ODg3ODQxfQ.H-i7dHygO2MV1-pIzYMReFPNU8fiAAbcvrZeSGPUhbk"
+)
+
+
+const page = async () => {
+
+    const [folders] = await Promise.all([
+        supabase.from("folders").select("*"),
+    ]);
+
+    if(folders.error){
+        console.log(folders.error.message);
+    }
+
+    console.log(folders.data);
+    
+
     return (
         <>
             <div className='p-4'>
